@@ -7,14 +7,12 @@ let package = Package(
     name: "Moya-ObjectMapper",
     products: [
         .library(name: "Moya-ObjectMapper", targets: ["Moya-ObjectMapper"]),
-        .library(name: "Moya-RxSwift-ObjectMapper", targets: ["Moya-RxSwift-ObjectMapper"]),
-        .library(name: "Moya-ReactiveSwift-ObjectMapper", targets: ["Moya-ReactiveSwift-ObjectMapper"])
+        .library(name: "Moya-RxSwift-ObjectMapper", targets: ["Moya-RxSwift-ObjectMapper"])
     ],
     dependencies: [
         .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "15.0.0")),
         .package(url: "https://github.com/tristanhimmelman/ObjectMapper.git", .upToNextMajor(from: "4.2.0")),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0")),
-        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift.git", .upToNextMajor(from: "6.0.0"))
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.0.0"))
     ],
     targets: [
         .target(
@@ -29,20 +27,10 @@ let package = Package(
             name: "Moya-RxSwift-ObjectMapper",
             dependencies: [
                 "Moya",
-                "RxMoya",
+                .product(name: "RxMoya", package: "Moya"),
                 "ObjectMapper",
                 "RxSwift"],
             path: "Source/RxSwift",
-            exclude: [
-                "Sample"]),
-        .target(
-            name: "Moya-ReactiveSwift-ObjectMapper",
-            dependencies: [
-                "Moya",
-                "ReactiveMoya",
-                "ObjectMapper",
-                "ReactiveSwift"],
-            path: "Source/ReactiveSwift",
             exclude: [
                 "Sample"])
     ]
